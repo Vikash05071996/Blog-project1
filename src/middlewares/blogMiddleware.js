@@ -41,7 +41,6 @@ const mid2 = async function (req, res, next) {
       .send({ status: false, msg: "token must be present" });
     }
 
-
     const id = req.params.blogId;
     let id2=req.query.authorId
     const data = await BlogModel.findById(id);
