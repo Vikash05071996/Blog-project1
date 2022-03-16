@@ -10,6 +10,9 @@ const createBlogs = async function (req, res) {
 
     let authorId = data.authorId;
     let authorReq = await authorModel.findById(authorId);
+    if(req.user!=data.authorId){
+      return res.status(400).send("You are not authorized to get this blog")
+    }
     if (authorReq) {
       let BlogsCreated = await BlogModel.create(data);
       res.status(201).send({ data: BlogsCreated, status: true });
@@ -40,6 +43,10 @@ const getBlogs = async function (req, res) {
       ],
     });
 
+    if(req.user!=authorId){
+      return res.status(400).send("You are not authorized to get this blog")
+    }
+
     if (blogs.length > 0) {
       for (let element of blogs) {
         if (element.isDeleted === false && element.isPublished === true) {
@@ -55,28 +62,32 @@ const getBlogs = async function (req, res) {
   }
 };
 
-const updatedBlog = async (request, response) => {
+const updatedBlog = async (req, res) => {
   try {
-    const id = request.params.blogId;
-    const data = request.body;
+    const id = req.params.blogId;
+    const data = req.body;
     const fetchData = await BlogModel.findById(id);
+    let authId=fetchData.authorId
+    if(req.user!=authId){
+      return res.status(400).send("You are not authorized to update this blog")
+    }
     if (fetchData.isPublished) {
       data.publishedAt = new Date();
       data.isPublished = true;
       const dataRes = await BlogModel.findByIdAndUpdate(id, data, {
         new: true,
       });
-      return response.status(200).send({
+      return res.status(200).send({
         status: true,
         msg: dataRes,
       });
     }
-    return response.status(404).send({
+    return res.status(404).send({
       status: false,
       Error: "Blog Not Found !",
     });
   } catch (error) {
-    return response.status(500).send({
+    return res.status(500).send({
       Error: error.message,
     });
   }
@@ -85,6 +96,10 @@ const deletedBlog = async function (req, res) {
   try {
     let id = req.params.blogId;
     let data = await BlogModel.findById(id);
+    
+    if(req.user!=data.authorId){
+      return res.status(400).send("You are not authorized to delete this blog")
+    }
     if (data) {
       if (data.isDeleted == false) {
         let data2 = await BlogModel.findOneAndUpdate(
@@ -108,6 +123,14 @@ const deleteByQuery = async (req, res) => {
   try {
     const data = req.query;
     const fetchData = await BlogModel.find(data);
+  
+
+    console.log(fetchData.authorId)
+    console.log(data.authorId)
+
+    if(req.user!=data.authorId){
+      return res.status(400).send("You are not authorized to delete this blog")
+    }
     if (!fetchData.length) {
       return res.status(404).send({
         status: false,

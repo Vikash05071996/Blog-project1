@@ -10,8 +10,8 @@ router.post('/createAuthors',authorController.createAuthors)
 router.post('/createBlogs',authMiddleware.mid1,blogController.createBlogs)
 router.get('/getBlogs',authMiddleware.mid1,blogController.getBlogs)
 
-router.put('/updatedBlog/:blogId',authMiddleware.mid2,blogController.updatedBlog)
-router.delete('/blogDeleted/:blogId',authMiddleware.mid2,blogController.deletedBlog)
+router.put('/updatedBlog/:blogId',authMiddleware.mid1,blogController.updatedBlog)
+router.delete('/blogDeleted/:blogId',authMiddleware.mid1,blogController.deletedBlog)
 
 router.delete('/deleteByQuery',authMiddleware.mid1,blogController.deleteByQuery)
 
