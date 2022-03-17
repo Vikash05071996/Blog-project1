@@ -39,7 +39,7 @@ const loginAuthor = async function (req, res) {
       });
     }
   } catch (err) {
-    res.status(400).send({ status: "something went wrong", error: err });
+    res.status(500).send({ status: "something went wrong", error: err });
   }
 };
 

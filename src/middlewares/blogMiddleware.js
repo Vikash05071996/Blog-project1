@@ -17,6 +17,13 @@ const mid1 = async function (req, res, next) {
     next();
 
     req.user = decodedToken.authorId;
+
+    if(req.query.authorId){
+      if (req.user != req.query.authorId) {
+        return res.status(400).send("You are not authorized to get this blog");
+      }
+    }
+
   } catch (err) {
     res.status(500).send({ status: false, msg: err.message });
   }
