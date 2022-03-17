@@ -60,33 +60,6 @@ const getBlogs = async function (req, res) {
   };
 
 
-
-
-//   try {
-//     let { category, authorId, tags, subcategory } = req.query;
-//     let obj = {};
-//     if (category != null) obj.category = category;
-//     if (authorId != null) obj.authorId = authorId;
-//     if (tags != null) obj.tags = tags;
-//     if (subcategory != null) obj.subcategory = subcategory;
-
-//     obj.isDeleted = false;
-//     obj.isPublished = true;
-
-//     let data = await BlogModel.find(obj);
-
-//     if (data.length > 0) {
-//       res.status(200).send({ status: true, msg: data });
-//     } else {
-//       res.status(404).send({ status: false, msg: "No data found" });
-//     }
-//   } catch (error) {
-//     res.status(404).send({ status: false, msg: error.message });
-//   }
-// };
-
-
-
 const updatedBlog = async (req, res) => {
   try {
     const id = req.params.blogId;
@@ -144,39 +117,6 @@ const deletedBlog = async function (req, res) {
   }
 };
 
-// const deleteByQuery = async (req, res) => {
-//   try {
-//     const data = req.query;
-//     const fetchData = await BlogModel.find(data);
-
-//     console.log(fetchData.authorId)
-//     console.log(data.authorId)
-
-//     if(req.user!=data.authorId){
-//       return res.status(400).send("You are not authorized to delete this blog")
-//     }
-//     if (!fetchData.length) {
-//       return res.status(404).send({
-//         status: false,
-//         msg: "Blog not found!",
-//       });
-//     }
-//     for (let i = 0; i < fetchData.length; i++) {
-//       if (!fetchData[i].isDeleted) {
-//         const dataRes = await BlogModel.updateMany(data, { isDeleted: true });
-//         res.status(200).send({ status: true, msg: dataRes });
-//       }
-//       return res.status(404).send({
-//         status: false,
-//         msg: "Blog not found !",
-//       });
-//     }
-//   } catch (error) {
-//     return res.status(500).send({
-//       "Error: ": error.message,
-//     });
-//   }
-// };
 
 const deleteByQuery = async function (req, res) {
   try {
