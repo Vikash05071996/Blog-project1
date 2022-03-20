@@ -1,32 +1,34 @@
-const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const BlogSchema = new mongoose.Schema({
-
-    title: { type: String, required: true },
-    body: { type: String, required: true },
+const BlogSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: "title is required", trim: true },
+    body: { type: String, required: "body is required", trim: true },
     authorId: {
-        type: ObjectId, ref: "Author"
+      type: ObjectId,
+      ref: "Author",
+      required: "Author Id is required",
     },
-    tags: [String],
-    category: String,
-    subcategory:[ String],
-    isDeleted: {
-        type: Boolean,
-        default: false
-    },
-   
+    tags: { type: [String], trim: true },
+    category: { type: String, required: "Blog category required", trim: true },
+    subcategory: { type: [String], trim: true },
+
     isPublished: {
-        type: Boolean,
-        deafault: false
+      type: Boolean,
+      deafault: false,
     },
-    PublishedAt:{
-        type:Date
+    PublishedAt: {
+      type: Date,
+      default: null,
     },
-    deletedAt:{type:Date},
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: { type: Date, default: null },
+  },
+  { timestamps: true }
+);
 
-
-}, { timestamps: true });
-
-module.exports = mongoose.model('Blogs', BlogSchema)
-
+module.exports = mongoose.model("Blogs", BlogSchema);
