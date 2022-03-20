@@ -11,6 +11,7 @@ const mid1 = async function (req, res, next) {
         .send({ status: false, msg: "token must be present" });
     }
 
+    
     //Authorization
     var decodedToken = jwt.verify(token, "backend-project");
 

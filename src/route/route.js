@@ -6,6 +6,7 @@ const blogController=require("../controllers/blogController")
 
 const authMiddleware=require("../middlewares/blogMiddleware")
 
+
 router.post('/createAuthors',authorController.createAuthors)
 
 router.post('/createBlogs',authMiddleware.mid1,blogController.createBlogs)

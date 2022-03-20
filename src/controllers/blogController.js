@@ -122,6 +122,7 @@ const deletedBlog = async function (req, res) {
   }
 };
 
+
 const deleteByQuery = async function (req, res) {
   try {
     let { category, authorId, tags, subcategory } = req.query;
