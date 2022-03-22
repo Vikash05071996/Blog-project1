@@ -10,6 +10,7 @@ const BlogSchema = new mongoose.Schema(
       ref: "Author",
       required: "Author Id is required",
     },
+    
     tags: { type: [String], trim: true },
     category: { type: String, required: "Blog category required", trim: true },
     subcategory: { type: [String], trim: true },

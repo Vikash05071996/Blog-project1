@@ -112,7 +112,7 @@ const deletedBlog = async function (req, res) {
         );
         res.status(200).send({ status: true, msg: data2 });
       } else {
-        res.status(200).send({ status: false, msg: "data already deleted" });
+        res.status(400).send({ status: false, msg: "data already deleted" });
       }
     } else {
       res.status(404).send({ status: false, msg: "id does not exist" });
