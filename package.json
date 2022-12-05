@@ -1,29 +1,30 @@
 {
-  "name": "thorium",
-  "version": "1.0.0",
-  "description": "Backend cohort Feb 2022 - May 2022",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sabihak89/thorium.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sabihak89/thorium/issues"
-  },
-  "homepage": "https://github.com/sabihak89/thorium#readme",
-  "dependencies": {
-    "body-parser": "^1.19.2",
-    "cors": "^2.8.5",
-    "express": "^4.17.3",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
-    "mongoose": "^6.2.6",
-    "nodemon": "^2.0.15",
-    "validator": "^13.7.0"
-  }
+    "name": "thorium",
+    "version": "1.0.0",
+    "description": "Backend cohort Feb 2022 - May 2022",
+    "main": "index.js",
+    "scripts": {
+        "test": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sabihak89/thorium.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sabihak89/thorium/issues"
+    },
+    "homepage": "https://github.com/sabihak89/thorium#readme",
+    "dependencies": {
+        "body-parser": "^1.19.2",
+        "cors": "^2.8.5",
+        "express": "^4.17.3",
+
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.29.1",
+        "mongoose": "^6.2.6",
+        "nodemon": "^2.0.15",
+        "validator": "^13.7.0"
+    }
 }
